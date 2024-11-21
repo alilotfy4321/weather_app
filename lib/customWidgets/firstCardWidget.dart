@@ -56,9 +56,9 @@ class CustomFirstScreenCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.fromARGB(255, 45, 139, 202),
-            Color.fromARGB(255, 22, 125, 209),
-            Color.fromARGB(255, 94, 24, 224),
+            Color.fromARGB(255, 134, 157, 172),
+            Color.fromARGB(255, 96, 109, 119),
+            Color.fromARGB(255, 76, 81, 87),
           ],
         ),
         borderRadius: BorderRadius.only(
