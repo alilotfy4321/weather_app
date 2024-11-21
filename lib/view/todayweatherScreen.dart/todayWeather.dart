@@ -18,17 +18,13 @@ class TodayScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherCubit, WeatherState>(builder: (context, state) {
       //----------variables----------------------------
-
       var cubit = WeatherCubit.get(context);
-      var model = cubit.weatherData!;
-      var chartAvgTempValues = model.forecast!.forecastday![0].hour!;
+      var model = cubit.weatherData;
       //--------------------------------------------
       return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 144, 172, 184),
         appBar: TodayScreenAppBar(context),
-        body: (state is WeatherLoadingState)
-            ? Center(child: CircularProgressIndicator())
-            : (model != null)
+        body: (model != null)
                 ? SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,13 +71,14 @@ class TodayScreen extends StatelessWidget {
                           height: 20,
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 10,),
+                          margin: EdgeInsets.only(
+                            left: 10,
+                          ),
                           child: const Text(
                             'Chart Temp All The Day..\n Press on  any chart area point  to get \n  The\' Tempreture \' value.',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
-                              
                             ),
                           ),
                         ),
@@ -108,7 +105,7 @@ class TodayScreen extends StatelessWidget {
                                     24,
                                     (index) => FlSpot(
                                         index.toDouble(),
-                                        chartAvgTempValues[index]
+                                        model.forecast!.forecastday![0].hour![index]
                                             .tempC!
                                             .toDouble()),
                                   ),
@@ -118,7 +115,6 @@ class TodayScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Row(
@@ -145,7 +141,6 @@ class TodayScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        
                         CustomAirQuality(model),
                       ],
                     ),

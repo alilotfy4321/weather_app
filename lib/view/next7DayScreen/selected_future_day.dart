@@ -21,8 +21,8 @@ class SelectedFutureDay extends StatelessWidget {
       builder: (context, state) {
         //-------------------------
         var cubit = WeatherCubit.get(context);
-      var model = cubit.weatherData!;
-      var chartAvgTempValues = model.forecast!.forecastday![0].hour!;
+        var model = cubit.weatherData!;
+        var chartAvgTempValues = model.forecast!.forecastday![0].hour!;
         TextStyle screenStyle = TextStyle(
           color: Colors.white,
           fontSize: 22,
@@ -33,101 +33,114 @@ class SelectedFutureDay extends StatelessWidget {
           appBar: AppBar(
             title: Text(day!),
           ),
-          body: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.all(10),
-                  height: 350,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 100, 135, 175),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        CachedNetworkImage(
-                          imageUrl: 'https:${indexData.day!.condition!.icon!}',
-                          placeholder: (context, url) =>
-                              CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          'The Day Is \t ${indexData.day!.condition!.text!}',
-                          style: screenStyle,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text('The Averege day temp is : ', style: screenStyle),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Center(
-                          child: Text(
-                            '${indexData.day!.avgtempC!}',
+          body: 
+             Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.all(10),
+                    //height: 350,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 100, 135, 175),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          CachedNetworkImage(
+                            imageUrl: 'https:${indexData.day!.condition!.icon!}',
+                            placeholder: (context, url) =>
+                                CircularProgressIndicator(),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'The Day Is \t ${indexData.day!.condition!.text!}',
                             style: screenStyle,
                           ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text('The Averege humidity  is :  ', style: screenStyle),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Center(
-                          child: Text(
-                            '${indexData.day!.avghumidity!}',
-                            style: screenStyle,
+                          SizedBox(
+                            height: 20,
                           ),
-                        ),
-                      ],
+                          Text('The Averege day temp is : ', style: screenStyle),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Center(
+                            child: Text(
+                              '${indexData.day!.avgtempC!}',
+                              style: screenStyle,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text('The Averege humidity  is :  ',
+                              style: screenStyle),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Center(
+                            child: Text(
+                              '${indexData.day!.avghumidity!}',
+                              style: screenStyle,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              //--------------drow chart
-              Expanded(
-                child: Container(
-                            margin: EdgeInsets.only(left: 10, right: 10),
-                            height: 300,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
+
+                //--------------day hours temp--------
+                 Container(
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10),
+                    color: const Color.fromARGB(255, 163, 174, 180),
+                    child: Text(
+                      'All day hours tempreture..',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                
+                //--------------drow chart
+                 Container(
+                    margin: EdgeInsets.only(left: 10, right: 10),
+                    height: 250,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 38, 57, 78),
-                              borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: LineChart(
+                      LineChartData(
+                        minX: 0,
+                        maxX: 24,
+                        minY: 0,
+                        maxY: 40,
+                        lineBarsData: [
+                          LineChartBarData(
+                            spots: List.generate(
+                              24,
+                              (index) => FlSpot(index.toDouble(),
+                                  chartAvgTempValues[index].tempC!.toDouble()),
                             ),
-                            child: LineChart(
-                              LineChartData(
-                                minX: 0,
-                                maxX: 24,
-                                minY: 0,
-                                maxY: 40,
-                                lineBarsData: [
-                                  LineChartBarData(
-                                    spots: List.generate(
-                                      24,
-                                      (index) => FlSpot(
-                                          index.toDouble(),
-                                          chartAvgTempValues[index]
-                                              .tempC!
-                                              .toDouble()),
-                                    ),
-                                    isCurved: true,
-                                  ),
-                                ],
-                              ),
-                            ),
+                            isCurved: true,
                           ),
-              ),
-                        
-            ],
-          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                
+              ],
+            ),
+          
         );
       },
     );

@@ -27,7 +27,16 @@ class Next7DayScreen extends StatelessWidget {
             child: Column(
               children: [
                 CustomFirstScreenCard(context, cubit.weatherData!, cubit),
-                Text('press Any Day To get More Details..',style: TextStyle(fontSize: 16,),),
+                Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  color: const Color.fromARGB(255, 163, 174, 180),
+                    child: Text(
+                  'press Any Day To get More Details..',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),),
                 Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Column(

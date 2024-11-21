@@ -78,9 +78,9 @@ class WeatherCubit extends Cubit<WeatherState> {
 // 1=> if api fails(status code !=200) to get data you will fallback to cached data.
 // 2=> data chached will retriev also when catch error happed.
 
-  bool isUsedCachedData = false;
+  bool? isUsedCachedData = false;
   Future<void> getHttpWeather(
-      {String city = 'shebin elkom', bool refresh = false}) async {
+      {String city = 'cairo', bool refresh = false}) async {
     emit(WeatherLoadingState());
 
     final url =
@@ -117,7 +117,6 @@ class WeatherCubit extends Cubit<WeatherState> {
         if (cachedData != null) {
           weatherData = cachedData;
           emit(WeatherSuccesState());
-          return;
         }
       }
 
@@ -128,7 +127,7 @@ class WeatherCubit extends Cubit<WeatherState> {
 
   //-------------------------------------------------------get currnt Location on map press
 
-  String currentLocation = ' shebin elkom';
+  String currentLocation = ' cairo';
   double currentLatitude = 30.466940;
   double currentLngitude = 30.934191;
   getCurrentLocation(double lat, double lng, Location) {
