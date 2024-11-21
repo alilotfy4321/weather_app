@@ -79,52 +79,52 @@ class WeatherCubit extends Cubit<WeatherState> {
 // 2=> data chached will retriev also when catch error happed.
 
   bool isUsedCachedData = false;
-  Future<void> getHttpWeather({String city = 'shebin elkom', bool refresh = false}) async {
-  emit(WeatherLoadingState());
+  Future<void> getHttpWeather(
+      {String city = 'shebin elkom', bool refresh = false}) async {
+    emit(WeatherLoadingState());
 
-  final url =
-      'http://api.weatherapi.com/v1/forecast.json?key=59e33689b22e40fa929131146242011&q=$city&days=14&aqi=yes';
+    final url =
+        'http://api.weatherapi.com/v1/forecast.json?key=59e33689b22e40fa929131146242011&q=$city&days=14&aqi=yes';
 
-  try {
-    // If refresh is true, clear the cache for this data
-    if (refresh) {
-      final box = await Hive.openBox('weatherBox');
-      await box.delete('cashedWeatherData');
-      await box.close();
-    }
-
-    // Fetch fresh data from the API
-    final response = await http.get(Uri.parse(url));
-
-    if (response.statusCode == 200) {
-      isUsedCachedData = false;
-      final data = jsonDecode(response.body);
-
-      // Parse and cache the new data
-      weatherData = RealWeatheerModel.fromJson(data);
-      await cacheDataOnce('cashedWeatherData', weatherData!);
-
-      emit(WeatherSuccesState());
-    } else {
-      throw Exception('Failed to fetch weather data: ${response.statusCode}');
-    }
-  } catch (e) {
-    // Fallback to cached data if refresh is not forced
-    if (!refresh) {
-      isUsedCachedData = true;
-      final cachedData = await getCachedData('cashedWeatherData');
-      if (cachedData != null) {
-        weatherData = cachedData;
-        emit(WeatherSuccesState());
-        return;
+    try {
+      // If refresh is true, clear the cache for this data
+      if (refresh) {
+        final box = await Hive.openBox('weatherBox');
+        await box.delete('cashedWeatherData');
+        await box.close();
       }
+
+      // Fetch fresh data from the API
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        isUsedCachedData = false;
+        final data = jsonDecode(response.body);
+
+        // Parse and cache the new data
+        weatherData = RealWeatheerModel.fromJson(data);
+        await cacheDataOnce('cashedWeatherData', weatherData!);
+
+        emit(WeatherSuccesState());
+      } else {
+        throw Exception('Failed to fetch weather data: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Fallback to cached data if refresh is not forced
+      if (!refresh) {
+        isUsedCachedData = true;
+        final cachedData = await getCachedData('cashedWeatherData');
+        if (cachedData != null) {
+          weatherData = cachedData;
+          emit(WeatherSuccesState());
+          return;
+        }
+      }
+
+      // Emit an error state if refresh is forced or no cache is available
+      emit(WeatherErrorState(e.toString()));
     }
-
-    // Emit an error state if refresh is forced or no cache is available
-    emit(WeatherErrorState(e.toString()));
   }
-}
-
 
   //-------------------------------------------------------get currnt Location on map press
 
@@ -146,24 +146,27 @@ class WeatherCubit extends Cubit<WeatherState> {
   }
 
   //------------------------------convert DateTime  to days --
-String getDayName(DateTime date) {
-  const days = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
+  String getDayName(DateTime date) {
+    const days = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
 
-  return days[date.weekday % 7];
-}
-String getDayFromDateString(String dateString) {
-  //parse string into DataTime
-  DateTime date = DateTime.parse(dateString);
-  return getDayName(date);
-}
+    return days[date.weekday % 7];
+  }
 
-  //----------
+  String getDayFromDateString(String dateString) {
+    //parse string into DataTime
+    DateTime date = DateTime.parse(dateString);
+    return getDayName(date);
+  }
+
+  //---------------------------drow charts----
+
+  //------------
 }

@@ -5,7 +5,9 @@ part of 'weather_cubit.dart';
 @immutable
 abstract class WeatherState {}
 
-class WeatherInitialState extends WeatherState {}
+class WeatherInitialState extends WeatherState {
+  
+}
 
 class WeatherLoadingState extends WeatherState {}
 
