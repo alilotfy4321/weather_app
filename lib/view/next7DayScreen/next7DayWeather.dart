@@ -70,7 +70,7 @@ class Next7DayScreen extends StatelessWidget {
                                     cubit.getDayFromDateString(
                                         forcastDate[index + 1].date!),
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 18,
                                       color: Colors.white,
                                     ),
                                   ),
