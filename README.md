@@ -37,4 +37,12 @@ MyApp is a cross-platform app built with Flutter. It offers a seamless experienc
  Cache recent weather data for offline viewing.
 
 ## Screen Shots for project
-<img src=''>
+
+<img src='https://github.com/user-attachments/assets/a964cb5a-9db2-4782-bb95-b2fcc4ab152b' style='height: 300px; width: auto;  '>
+<img src='https://github.com/user-attachments/assets/96a42690-18e6-4051-97b7-27ebfef1db6e' style='height: 300px; width: auto;  '>
+
+
+
+
+ 
+
