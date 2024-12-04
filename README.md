@@ -47,6 +47,18 @@ MyApp is a cross-platform app built with Flutter. It offers a seamless experienc
 <img src='https://github.com/user-attachments/assets/f2f1b1b8-8988-41b2-9128-4ce3c375bdec' alt="report for current day" style='height: 300px; width: auto;  '>
 <img src='https://github.com/user-attachments/assets/8440c6e8-8ba8-434a-a3d4-c28b919592d0' style='height: 300px; width: auto;  '>
 
+## Installation
+
+Follow these steps to git clone the Weather App on your local machine:
+
+### Steps
+
+1. **Clone the Repository**
+   ```
+   git clone https://github.com/your-username/weather-app.git
+    ```
+
+
 
 
  
