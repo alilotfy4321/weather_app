@@ -37,7 +37,7 @@ class CustomAirQuality extends StatelessWidget {
               width: 10,
             ),
             Text(
-              ' 03 (OZone)\n good job mr ali lotfy ',
+              ' 03 (OZone)\n  ali lotfy ',
               style: TextStyle(
                 color: Colors.grey[800],
                 fontSize: 16,

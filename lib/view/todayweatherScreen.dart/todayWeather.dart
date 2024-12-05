@@ -4,11 +4,11 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/controll/weather_cubit.dart';
-import 'package:weather_app/customWidgets/customAirQuality.dart';
+import 'package:weather_app/core/customWidgets/customAirQuality.dart';
 import 'package:weather_app/view/next7DayScreen/next7DayWeather.dart';
 import 'package:weather_app/view/reprtScreen/reportscreen.dart';
 import 'package:weather_app/view/todayweatherScreen.dart/apBar.dart';
-import 'package:weather_app/customWidgets/firstCardWidget.dart';
+import 'package:weather_app/core/customWidgets/firstCardWidget.dart';
 import 'package:weather_app/view/todayweatherScreen.dart/scroolPart/scrollCard.dart';
 
 class TodayScreen extends StatelessWidget {
@@ -23,7 +23,7 @@ class TodayScreen extends StatelessWidget {
       //--------------------------------------------
       return Scaffold(
         backgroundColor: const Color.fromARGB(255, 144, 172, 184),
-        appBar: TodayScreenAppBar(context),
+        appBar: TodayScreenAppBar(context,cubit),
         body: (model != null)
                 ? SingleChildScrollView(
                     child: Column(

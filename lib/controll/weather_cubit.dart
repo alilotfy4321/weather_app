@@ -17,6 +17,12 @@ class WeatherCubit extends Cubit<WeatherState> {
   /// singleton
   static WeatherCubit get(context) => BlocProvider.of(context);
 
+   bool isDark = false;
+  changeTheme() {
+    isDark = !isDark;
+    emit(ChangeAppThemeState());
+  }
+
   RealWeatheerModel? weatherData;
 
   //----------geting weather using dio--------

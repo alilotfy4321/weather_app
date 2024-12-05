@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/controll/weather_cubit.dart';
 import 'package:weather_app/view/next7DayScreen/apBar.dart';
-import 'package:weather_app/customWidgets/firstCardWidget.dart';
+import 'package:weather_app/core/customWidgets/firstCardWidget.dart';
 import 'package:weather_app/view/next7DayScreen/selected_future_day.dart';
 
 class Next7DayScreen extends StatelessWidget {

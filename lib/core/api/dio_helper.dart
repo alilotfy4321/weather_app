@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_string_interpolations, avoid_print
 
 import 'package:dio/dio.dart';
-import 'package:weather_app/constants/secondApi.dart';
+import 'package:weather_app/core/constants/secondApi.dart';
 
 class DioHelper {
   static Dio? dio;

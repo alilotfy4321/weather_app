@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/controll/weather_cubit.dart';
-import '../view/mapp/map_location.dart';
+import '../../view/mapp/map_location.dart';
 
 //----------------------------------------- more usefull to use class to acheive dependency--------------------
 class CustomSearchFeild extends StatelessWidget {

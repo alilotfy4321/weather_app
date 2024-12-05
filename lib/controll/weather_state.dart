@@ -8,7 +8,7 @@ abstract class WeatherState {}
 class WeatherInitialState extends WeatherState {
   
 }
-
+class ChangeAppThemeState extends WeatherState{}
 class WeatherLoadingState extends WeatherState {}
 
 class WeatherSuccesState extends WeatherState {}

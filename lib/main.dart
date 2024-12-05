@@ -8,8 +8,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:weather_app/controll/weather_cubit.dart';
 import 'package:weather_app/model/firstModel.dart';
 import 'package:weather_app/model/secondForcastModel.dart';
+import 'package:weather_app/core/styles/themes/dark_theme.dart/app_dark_theme.dart';
+import 'package:weather_app/core/styles/themes/light_theme.dart/app_light_theme.dart';
 import 'package:weather_app/view/todayweatherScreen.dart/todayWeather.dart';
-
 
 late TodayWeather weatherData;
 void main() async {
@@ -24,7 +25,7 @@ void main() async {
   Hive.registerAdapter(AirQualityAdapter());
   Hive.registerAdapter(DayAdapter());
   Hive.registerAdapter(AstroAdapter());
-  Hive.registerAdapter(HourAdapter());  
+  Hive.registerAdapter(HourAdapter());
 
   runApp(const MyApp());
 }
@@ -34,11 +35,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return BlocProvider(
       create: (context) => WeatherCubit()..getHttpWeather(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: TodayScreen(),
+      child: BlocBuilder<WeatherCubit, WeatherState>(
+        builder: (context, state) {
+          var cubit = WeatherCubit.get(context);
+          return MaterialApp(
+            theme: getLightTheme(),
+            darkTheme: getDarkTheme(),
+            themeMode: (cubit.isDark) ? ThemeMode.dark : ThemeMode.light,
+            debugShowCheckedModeBanner: false,
+            home: TodayScreen(),
+          );
+        },
       ),
     );
   }

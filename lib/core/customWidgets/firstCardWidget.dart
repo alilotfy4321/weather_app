@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/model/firstCardLastRow.dart';
 import 'package:weather_app/model/secondForcastModel.dart';
 
-import '../controll/weather_cubit.dart';
+import '../../controll/weather_cubit.dart';
 
 ///////////////////////////////////////
 class CustomFirstScreenCard extends StatelessWidget {

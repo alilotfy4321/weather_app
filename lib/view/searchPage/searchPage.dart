@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:weather_app/controll/weather_cubit.dart';
-import 'package:weather_app/customWidgets/customSearchFeild.dart';
-import 'package:weather_app/customWidgets/firstCardWidget.dart';
+import 'package:weather_app/core/customWidgets/customSearchFeild.dart';
+import 'package:weather_app/core/customWidgets/firstCardWidget.dart';
 
 class SearchPage extends StatelessWidget {
   final TextEditingController cityController = TextEditingController();

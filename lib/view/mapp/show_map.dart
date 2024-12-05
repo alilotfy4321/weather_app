@@ -8,7 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 
 import '../../controll/weather_cubit.dart';
-import '../../customWidgets/customSearchFeild.dart';
+import '../../core/customWidgets/customSearchFeild.dart';
 
 class ShowMap extends StatelessWidget {
   ShowMap(this.cubit,
